@@ -1,165 +1,192 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce/src/assets.dart';
-import 'package:ecommerce/widgets/network_image.dart';
+import 'package:ecommerce/home/home.dart';
+import 'package:ecommerce/items/list_items.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../items/list_items.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ecommerce/src/assets.dart';
+import 'package:ecommerce/items/item.dart';
 
-
-
-class list_categories extends StatefulWidget {
-  list_categories({Key? key}) : super(key: key);
-
-  _list_categoriesState createState() => _list_categoriesState();
+class List_Categories extends StatefulWidget {
+  @override
+  _List_CategoriesState createState() => _List_CategoriesState();
 }
 
-class _list_categoriesState extends State<list_categories> {
-  final TextStyle dropdownMenuItem =
-  TextStyle(color: Colors.black, fontSize: 18);
-
-  final primary = Color(0xff97136c);
-  final secondary = Color(0xfff29a94);
-
-  final List<Map> schoolLists = [
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-
-    },
-
-  ];
-
+class _List_CategoriesState extends State<List_Categories> {
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl, child: Scaffold(
-      backgroundColor: Color(0xfff0f0f0),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            children: <Widget>[
 
-              Container(
-                height: 140,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: primary,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.filter_list_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "الاقسام",
-                        style: TextStyle(color: Colors.white, fontSize: 24),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(right: 30),
+        child: Align(
+
+          alignment: Alignment.bottomRight,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(
+                Radius.circular(100),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 7,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: FloatingActionButton(
+
+
+
+              onPressed: () {
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                      (Route<dynamic> route) => false,
+                );
+
+              },
+              backgroundColor: Colors.pink,
+              child: Icon(Icons.home , color: Colors.white, size: 30,),
+            ),
+          ),
+        ),
+      ),
+      appBar: AppBar(
+
+        automaticallyImplyLeading: false,
+
+        actions: [
+
+          Padding(padding: EdgeInsets.only(top: 10,left: 20)
+            ,child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            ),
+
+          ),
+        ],
+        leading:  Padding(padding: EdgeInsets.only(top: 10,right: 20)
+          ,child: InkWell(
+            child: Icon(Icons.filter_list),
+          ),
+
+        ),
+        centerTitle: true,
+        title:  Text(
+          'الاقسام',
+          style:
+          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+        ),
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[ Color(0xFF21BFBD),  Color(0xFF1B7878),],
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        bottom: false,
+        child: Container(
+
+          child: Column(
+            children: [
+              ClipPath(
+                clipper: WaveClipper(),
+                child:  Container(
+                  child: Column(),
+                  width: double.infinity,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                      gradient: const LinearGradient(
+                          colors: [const Color(0xFF21BFBD), const Color(0xFF1B7878),])),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(top: 110),
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                child: GridView.builder(
-                  itemCount: images.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ), itemBuilder: (BuildContext context, int index) {
-                  return _buildItems(index, context);
-                },
-                ),),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 25,
+                          childAspectRatio: 0.85),
+                      itemCount: data_categroies.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => List_items(),
+                                ),
+                              );
+                            },
+                            child: Container(
+
+
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    offset: Offset(1, 2),
+                                    blurRadius: 5,
+                                    spreadRadius: 0,
+                                  )
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Container(
+
+                                      width: double.maxFinite,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Image.network(
+                                        data_categroies[index]['image'],
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                               Center(
+                                 child: Text(data_categroies[index]['name'],
+                                     style: TextStyle(
+                                         fontSize: 20,
+                                         fontWeight: FontWeight.w400)),
+                               ),
+
+
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                ],
+                              ),
+                            )
+                        );
+                      }),
+                ),
+              )
             ],
           ),
         ),
       ),
     ));
-  }
-
-  Widget _buildItems(int index, BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20))
-      ),
-      height: 200,
-      child: GestureDetector(
-        onTap: () =>   Navigator.of(context).push(MaterialPageRoute(builder: (context) => list_Items())),
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
-            Expanded(
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child:Hero(
-
-                        tag: "item$index",
-                        child: PNetworkImage(images[index % images.length],
-                            fit: BoxFit.cover)))),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'القسم الفلاني',
-              softWrap: true,
-            ),
-            SizedBox(
-              height: 10,
-            )
-          ],
-        ),
-      ),
-    );
   }
 }

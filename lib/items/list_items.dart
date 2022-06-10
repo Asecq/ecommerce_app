@@ -1,150 +1,194 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce/widgets/network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ecommerce/src/assets.dart';
+import 'package:ecommerce/items/item.dart';
 
-import 'item.dart';
+import '../home/categories.dart';
+import '../home/home.dart';
 
-class list_Items extends StatefulWidget {
-  list_Items({Key? key}) : super(key: key);
-
-  _list_ItemsState createState() => _list_ItemsState();
+class List_items extends StatefulWidget {
+  @override
+  _List_itemsState createState() => _List_itemsState();
 }
 
-class _list_ItemsState extends State<list_Items> {
-  final TextStyle dropdownMenuItem =
-  TextStyle(color: Colors.black, fontSize: 18);
-
-  final primary = Color(0xff97136c);
-  final secondary = Color(0xfff29a94);
-
-  final List<Map> schoolLists = [
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-    },
-    {
-      "name": "المنتج الفلاني",
-      "date": "2022/06/3",
-      "price": "10,000",
-      "image":
-      "https://firebasestorage.googleapis.com/v0/b/dl-flutter-ui-challenges.appspot.com/o/img%2F4.jpg?alt=media"
-
-    },
-
-  ];
-
+class _List_itemsState extends State<List_items> {
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl, child: Scaffold(
-      backgroundColor: Color(0xfff0f0f0),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 145),
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                child: ListView.builder(
-                    itemCount: schoolLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(right: 30),
+        child: Align(
+
+          alignment: Alignment.bottomRight,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(
+                Radius.circular(100),
               ),
-              Container(
-                height: 140,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: primary,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30))),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.filter_list_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "القسم الفلاني",
-                        style: TextStyle(color: Colors.white, fontSize: 24),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.3),
+                  spreadRadius: 7,
+                  blurRadius: 7,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: FloatingActionButton(
+
+
+
+              onPressed: () {
+
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Home()),
+                      (Route<dynamic> route) => false,
+                );
+
+              },
+              backgroundColor: Colors.pink,
+              child: Icon(Icons.home , color: Colors.white, size: 30,),
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+
+        automaticallyImplyLeading: false,
+
+        actions: [
+
+          Padding(padding: EdgeInsets.only(top: 10,left: 20)
+          ,child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            ),
+
+          ),
+        ],
+        leading:  Padding(padding: EdgeInsets.only(top: 10,right: 20)
+          ,child: InkWell(
+            child: Icon(Icons.filter_list),
+          ),
+
+        ),
+        centerTitle: true,
+        title:  Text(
+          'القسم الفلاني',
+          style:
+          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+        ),
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[ Color(0xFF21BFBD),  Color(0xFF1B7878),],
+            ),
+          ),
+        ),
+      ),
+      body: SafeArea(
+        bottom: false,
+        child: Container(
+          child: Column(
+            children: [
+              ClipPath(
+                clipper: WaveClipper(),
+                child:  Container(
+                    child: Column(),
+                  width: double.infinity,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                      gradient: const LinearGradient(
+                          colors: [const Color(0xFF21BFBD), const Color(0xFF1B7878),])),
                 ),
               ),
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(
-                      height: 110,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Material(
-                        elevation: 5.0,
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
-                        child: TextField(
-                          // controller: TextEditingController(text: locations[0]),
-                          cursorColor: Theme.of(context).primaryColor,
-                          style: dropdownMenuItem,
-                          decoration: const InputDecoration(
-                              hintText: "بحث عن منتج",
-                              hintStyle: TextStyle(
-                                  color: Colors.black38, fontSize: 16),
-                              prefixIcon: Material(
-                                elevation: 0.0,
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(30)),
-                                child: Icon(Icons.search),
+
+
+              Expanded(
+                child: Container(
+
+
+                  padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                  child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 25,
+                          childAspectRatio: 0.70),
+                      itemCount: data.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => item(),
                               ),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 25, vertical: 13)),
-                        ),
-                      ),
-                    ),
-                  ],
+                            );
+                          },
+                          child: Container(
+
+
+                            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 5),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.3),
+                                  offset: Offset(1, 2),
+                                  blurRadius: 5,
+                                  spreadRadius: 0,
+                                )
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Container(
+
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Image.network(
+                                      data[index]['image'],
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                               SizedBox(
+                                 height: 5,
+                               ),
+                               Padding(padding: EdgeInsets.only(right: 10),child:  Text(data[index]['name'],
+                                   style: TextStyle(
+                                       fontSize: 20,
+                                       fontWeight: FontWeight.w400)),),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                               Padding(padding: EdgeInsets.only(right: 10),child:  Text(
+                                 data[index]['price'] + ' د.ع ',
+                                 style: TextStyle(
+                                     fontSize: 16, fontWeight: FontWeight.w700 , color: Colors.pink),
+                               ),),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                              ],
+                            ),
+                          )
+                        );
+                      }),
                 ),
               )
             ],
@@ -153,113 +197,30 @@ class _list_ItemsState extends State<list_Items> {
       ),
     ));
   }
+}
+class WaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
 
-  Widget buildList(BuildContext context, int index) {
-    return InkWell(
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(25),
-          color: Colors.white,
-        ),
-        width: double.infinity,
-        height: 110,
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: 80,
-              height: 80,
-              margin: EdgeInsets.only(left: 15),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(width: 1, color: secondary),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: schoolLists[index]['image'],
-                imageBuilder: (context, imageProvider) => Container(
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: imageProvider, fit: BoxFit.cover),
-                  ),
-                ),
-                placeholder: (context, url) => SpinKitWave(
-                  size: 40,
-                  itemBuilder: (BuildContext context, int index) {
+    var firstEndPoint = Offset(size.width * 0.6, size.height - 15 - 50);
+    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
+    var secondEndPoint = Offset(size.width, size.height - 40);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 30);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
 
-                    return DecoratedBox(
-
-                      decoration: BoxDecoration(
-                        color: Colors.white54,
-                      ),
-                    );
-                  },
-                ),
-                errorWidget: (context, url, error) => Icon(Icons.error),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Flexible(child:  Text(
-                    schoolLists[index]['name'],
-                    style: TextStyle(
-                        color: primary,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  )),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.date_range,
-                        color: secondary,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(schoolLists[index]['date'],
-                          style: TextStyle(
-                              color: primary, fontSize: 13, letterSpacing: .3)),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.sell,
-                        color: secondary,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(schoolLists[index]['price'] + ' د.ع ',
-                          style: TextStyle(
-                              color: primary, fontSize: 13, letterSpacing: .3)),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => item()));
-
-      },
-    );
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

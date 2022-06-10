@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ecommerce/src/assets.dart';
 import 'package:ecommerce/widgets/network_image.dart';
 
+import '../home/home.dart';
+
 class item extends StatelessWidget {
   final String image = images[1];
   @override
@@ -18,21 +20,28 @@ class item extends StatelessWidget {
           SafeArea(
               child: Column(
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(children: [
-                      MaterialButton(
-                        padding: const EdgeInsets.all(8.0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(Icons.arrow_back_ios ),
-                        color: Colors.white,
-                        textColor: Colors.black,
-                        minWidth: 0,
-                        height: 40,
-                        onPressed: () => Navigator.pop(context),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                     Container(),
+                      Container(
+                        alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 10,left: 20),
+                          child: MaterialButton(
+                            padding: const EdgeInsets.all(8.0),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            child: Icon(Icons.arrow_forward_ios , size: 25,),
+                            color: Colors.black38,
+                            textColor: Colors.white,
+                            minWidth: 0,
+                            height: 40,
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ),
                       ),
-                    ]),
+                    ],
                   ),
                   Spacer(),
                   Expanded(
@@ -49,17 +58,13 @@ class item extends StatelessWidget {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  ListTile(
+                                  const ListTile(
                                     title: Text(
                                       "المنتج الفلاني",
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20.0),
-                                    ),
-                                    trailing: IconButton(
-                                      icon: Icon(Icons.favorite_border),
-                                      onPressed: () {},
                                     ),
                                   ),
                                   Padding(
@@ -71,7 +76,7 @@ class item extends StatelessWidget {
                                     ),),
                                   ),
                                   ExpansionTile(
-                                    title: Text("عرض تفاصيل اكثر",style: TextStyle(
+                                    title: const Text("عرض تفاصيل اكثر",style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold
                                     ),),

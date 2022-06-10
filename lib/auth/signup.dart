@@ -1,141 +1,344 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:ecommerce/src/assets.dart';
-import 'package:ecommerce/widgets/network_image.dart';
 
-class SignupOnePage extends StatelessWidget {
-  static final String path = "lib/src/pages/login/signup1.dart";
-  Widget _buildPageContent(BuildContext context) {
-    return Container(
-      color: Colors.blue.shade100,
-      child: ListView(
+class Signup extends StatefulWidget {
+  @override
+  _SignupState createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(textDirection: TextDirection.rtl, child: Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: <Color>[Color(0xFF21BFBD), Color(0xFF1B7878),],
+            ),
+          ),
+        ),
+        actions: [
+          Padding(padding: EdgeInsets.only(left: 20 , top: 10)
+            ,child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_forward_ios),
+            ),
+          )
+        ],
+      ),
+      backgroundColor: Colors.white,
+      body: ListView(
         children: <Widget>[
-          const SizedBox(height: 180.0,),
-
-          SizedBox(height: 20.0,),
-          _buildLoginForm(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Stack(
             children: <Widget>[
-              FloatingActionButton(
-                mini: true,
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-                backgroundColor: Colors.blue,
-                child: Icon(Icons.arrow_back),
-              )
+              ClipPath(
+                clipper: WaveClipper2(),
+                child: Container(
+                  child: Column(),
+                  width: double.infinity,
+                  height: 300,
+                ),
+              ),
+              ClipPath(
+                clipper: WaveClipper3(),
+                child: Container(
+                  child: Column(),
+                  width: double.infinity,
+                  height: 300,
+                  decoration: const BoxDecoration(
+                      gradient:  LinearGradient(
+                          colors: [ Color(0xFF21BFBD),  Color(0xFF1B7878),])),
+                ),
+              ),
+              ClipPath(
+                clipper: WaveClipper1(),
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Image.asset('assets/images/logo.png' , height: 80,),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        "متجر الكتروني",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 30),
+                      ),
+                    ],
+                  ),
+                  width: double.infinity,
+                  height: 300,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          colors:[const Color(0xFF21BFBD), const Color(0xFF1B7878),])),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                onChanged: (String value){},
+                cursorColor: const Color(0xFF1B7878),
+                decoration: const InputDecoration(
+                    hintText: "اسمك الكامل",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.person,
+                        color: const Color(0xFF1B7878),
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                onChanged: (String value){},
+                cursorColor: Colors.deepOrange,
+                decoration: const InputDecoration(
+                    hintText: "رقم الهاتف",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.phone,
+                        color: const Color(0xFF1B7878),
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                onChanged: (String value){},
+                cursorColor: Colors.deepOrange,
+                decoration: const InputDecoration(
+                    hintText: "كلمة السر",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.lock,
+                        color: const Color(0xFF1B7878),
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                onChanged: (String value){},
+                cursorColor: Colors.deepOrange,
+                decoration: const InputDecoration(
+                    hintText: "المحافظة",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.location_on,
+                        color: const Color(0xFF1B7878),
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Material(
+              elevation: 2.0,
+              borderRadius: const BorderRadius.all(Radius.circular(30)),
+              child: TextField(
+                onChanged: (String value){},
+                cursorColor: Colors.deepOrange,
+                decoration: const InputDecoration(
+                    hintText: "المنطقة",
+                    prefixIcon: Material(
+                      elevation: 0,
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      child: Icon(
+                        Icons.add_location,
+                        color: const Color(0xFF1B7878),
+                      ),
+                    ),
+                    border: InputBorder.none,
+                    contentPadding:
+                    EdgeInsets.symmetric(horizontal: 25, vertical: 13)),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Container(
+                decoration: const BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(100)),
+                    color: const Color(0xFF21BFBD)),
+                child: FlatButton(
+                  child: const Text(
+                    "انشاء الحساب",
+                    style:  TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 18),
+                  ),
+                  onPressed: () {},
+                ),
+              )),
+
+          const SizedBox(height: 40,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:  <Widget>[
+              const Text("لديك حساب بالفعل ؟", style:  TextStyle(color:Colors.black,fontSize: 12 ,fontWeight: FontWeight.normal),),
+             InkWell(
+               child:  const Text("سجل دخول", style:  TextStyle(color:  Color(0xFF1B7878), fontWeight: FontWeight.w500,fontSize: 12, decoration: TextDecoration.underline )),
+               onTap: (){
+                 Navigator.pop(context);
+               },
+             )
             ],
           )
         ],
       ),
-    );
+    ));
   }
+}
 
-  Container _buildLoginForm() {
-    return Container(
-      padding: EdgeInsets.all(20.0),
-      child: Directionality(textDirection: TextDirection.rtl, child: Stack(
-        children: <Widget>[
-          ClipPath(
-            clipper: RoundedDiagonalPathClipper(),
-            child: Container(
-              height: 460,
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(40.0)),
-                color: Colors.white,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+class WaveClipper1 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
 
-                  SizedBox(height: 90.0,),
-                  Container(
-                    child:   Text('انشاء حساب جديد', style: const  TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
+    var firstEndPoint = Offset(size.width * 0.6, size.height - 29 - 50);
+    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
 
-                    ),),
-                  ),
-                  SizedBox(height: 20.0,),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: TextField(
-                        style: TextStyle(color: Colors.blue),
-                        decoration: InputDecoration(
-                            hintText: "رقم الهاتف",
-                            hintStyle: TextStyle(color: Colors.blue.shade200),
-                            border: InputBorder.none,
-                            icon: Icon(Icons.email, color: Colors.blue,)
-                        ),
-                      )
-                  ),
-                  Container(child: Divider(color: Colors.blue.shade400,), padding: EdgeInsets.only(left: 20.0,right: 20.0, bottom: 10.0),),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: TextField(
-                        style: TextStyle(color: Colors.blue),
-                        decoration: InputDecoration(
-                            hintText: "الاسم الكامل",
-                            hintStyle: TextStyle(color: Colors.blue.shade200),
-                            border: InputBorder.none,
-                            icon: Icon(Icons.person, color: Colors.blue,)
-                        ),
-                      )
-                  ),
-                  Container(child: Divider(color: Colors.blue.shade400,), padding: EdgeInsets.only(left: 20.0,right: 20.0, bottom: 10.0),),
-                  Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: TextField(
-                        style: TextStyle(color: Colors.blue),
-                        decoration: InputDecoration(
-                            hintText: "كلمة السر",
-                            hintStyle: TextStyle(color: Colors.blue.shade200),
-                            border: InputBorder.none,
-                            icon: Icon(Icons.lock, color: Colors.blue,)
-                        ),
-                      )
-                  ),
-                  Container(child: Divider(color: Colors.blue.shade400,), padding: EdgeInsets.only(left: 20.0,right: 20.0, bottom: 10.0),),
-                  SizedBox(height: 10.0,),
-
-                ],
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircleAvatar(
-                radius: 50.0,
-                backgroundColor: Colors.pink,
-                child:  Image.asset('assets/images/logo.png'),
-              ),
-            ],
-          ),
-          Container(
-            height: 450,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                onPressed: (){},
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
-                child: Text("انشاء الحساب", style: TextStyle(color: Colors.white70)),
-                color: Colors.blue,
-              ),
-            ),
-          )
-        ],
-      ),),
-    );
+    var secondEndPoint = Offset(size.width, size.height - 60);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildPageContent(context),
-    );
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class WaveClipper3 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
+
+    var firstEndPoint = Offset(size.width * 0.6, size.height - 15 - 50);
+    var firstControlPoint = Offset(size.width * .25, size.height - 60 - 50);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondEndPoint = Offset(size.width, size.height - 40);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 30);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class WaveClipper2 extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(0.0, size.height - 50);
+
+    var firstEndPoint = Offset(size.width * .7, size.height - 40);
+    var firstControlPoint = Offset(size.width * .25, size.height);
+    path.quadraticBezierTo(firstControlPoint.dx, firstControlPoint.dy,
+        firstEndPoint.dx, firstEndPoint.dy);
+
+    var secondEndPoint = Offset(size.width, size.height - 45);
+    var secondControlPoint = Offset(size.width * 0.84, size.height - 50);
+    path.quadraticBezierTo(secondControlPoint.dx, secondControlPoint.dy,
+        secondEndPoint.dx, secondEndPoint.dy);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

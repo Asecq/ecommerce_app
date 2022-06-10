@@ -1,3 +1,4 @@
+import 'package:ecommerce/auth/profile.dart';
 import 'package:ecommerce/home/categories.dart';
 import 'package:ecommerce/items/item.dart';
 import 'package:ecommerce/items/list_items.dart';
@@ -41,7 +42,7 @@ class Home extends StatelessWidget {
           SliverToBoxAdapter(
             child: Container(
 
-                color: Colors.deepOrange,
+                color:  const Color(0xFF1B7878),
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Row(
@@ -56,7 +57,7 @@ class Home extends StatelessWidget {
                       MaterialButton(
                           onPressed: () {
                             //list_categories
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => list_categories()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => List_Categories()));
 
                           },
                           child: Text("عرض الكل".toUpperCase(),
@@ -87,7 +88,7 @@ class Home extends StatelessWidget {
           SliverToBoxAdapter(
             child: Container(
                 padding: EdgeInsets.all(20.0),
-                color: Colors.pink,
+                color:  const Color(0xFF21BFBD),
                 child: Text("المنتجات الاكثر مبيعاً".toUpperCase(),
                     style: TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold))),
@@ -151,7 +152,7 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
-                child: Icon(Icons.person , size: 20,),
+                child: Icon(Icons.menu , size: 20,),
                 color: Colors.black12,
                 textColor: Colors.white,
                 minWidth: 0,
@@ -173,7 +174,7 @@ class Home extends StatelessWidget {
       ),
       height: 200,
       child: GestureDetector(
-        onTap: () =>   Navigator.of(context).push(MaterialPageRoute(builder: (context) => list_Items())),
+        onTap: () =>   Navigator.of(context).push(MaterialPageRoute(builder: (context) => List_items())),
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -193,6 +194,7 @@ class Home extends StatelessWidget {
             Text(
               'القسم الفلاني',
               softWrap: true,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 10,
@@ -229,7 +231,7 @@ class Home extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 15.0,
                       fontWeight: FontWeight.bold,
-                      color: Colors.red),
+                      color: Colors.pink),
                 ),
               ),
             ),
@@ -247,7 +249,9 @@ class Home extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.only(right: 16.0, left: 40),
           decoration: BoxDecoration(
-              color: primary, boxShadow: [BoxShadow(color: Colors.black45)]),
+              gradient: const LinearGradient(
+                  colors: [const Color(0xFF51c2c2), const Color(0xFF1b8f8f),]),
+              boxShadow: [BoxShadow(color: Colors.black45)]),
           width: 300,
           child: SafeArea(
             child: SingleChildScrollView(
@@ -262,34 +266,34 @@ class Home extends StatelessWidget {
                   Container(
                     height: 90,
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                            colors: [Colors.orange, Colors.deepOrange])),
-                    child:  CircleAvatar(
-                      radius: 50.0,
-                      backgroundColor: Colors.pink,
-                      child:  Image.asset('assets/images/logo.png'),
-                    ),
+                    child:  Image.asset('assets/images/logo.png'),
                   ),
                   SizedBox(height: 5.0),
                   Text(
                     "علي محمد",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.w600),
                   ),
+                  SizedBox(height: 5.0),
                   Text(
                     "مشتري",
-                    style: TextStyle(color: active, fontSize: 14.0),
+                    style: TextStyle(color: Colors.white54, fontSize: 14.0),
                   ),
                   SizedBox(height: 30.0),
-                  _buildRow(Icons.person_pin, "الملف الشخصي"),
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Profile()));
+
+                    },
+                    child: _buildRow(Icons.person_pin, "الملف الشخصي" ,),
+                  ),
+
                   _buildDivider(),
                   InkWell(
                     onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartOnePage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartThreePage()));
 
                     },
                     child: _buildRow(Icons.shopping_cart, "سلة المشتريات", showBadge: true ,),
@@ -317,13 +321,13 @@ class Home extends StatelessWidget {
     );
   }
   Widget _buildRow(IconData icon, String title, {bool showBadge = false}) {
-    final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
+    final TextStyle tStyle = TextStyle(color: Colors.white, fontSize: 16.0 , fontWeight: FontWeight.w200);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(children: [
         Icon(
           icon,
-          color: active,
+          color: Colors.white,
         ),
         SizedBox(width: 10.0),
         Text(
@@ -333,16 +337,16 @@ class Home extends StatelessWidget {
         Spacer(),
         if (showBadge)
           Material(
-            color: Colors.deepOrange,
+            color: const Color(0xFF21BFBD),
             elevation: 5.0,
-            shadowColor: Colors.red,
+            shadowColor: const Color(0xFF21BFBD),
             borderRadius: BorderRadius.circular(5.0),
             child: Container(
               width: 25,
               height: 25,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.deepOrange,
+                color: const Color(0xFF21BFBD),
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: Text(

@@ -23,10 +23,10 @@ class MyApp extends StatelessWidget {
         splashIconSize: 130,
         splash:  CircleAvatar(
           radius: 120.0,
-          backgroundColor: Colors.pink,
+          backgroundColor: Color(0xFF21BFBD),
           child:  Image.asset('assets/images/logo.png'),
         ),
-        nextScreen: LoginPage(),
+        nextScreen: Login(),
         splashTransition: SplashTransition.rotationTransition,
 
       ),
